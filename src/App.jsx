@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  let [arr, setArr] = useState([]);
+  let [things, setThings] = useState([]);
 
   useEffect(() => {
     axios
       .get('/stuff')
       .then((res) => {
-        setArr(res.data);
+        setThings(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -19,8 +19,8 @@ function App() {
   return (
     <>
       <h1>Hello there!</h1>
-      {arr.map((num) => {
-        return <p>{num}</p>;
+      {things.map((thing) => {
+        return <p>{thing.name}</p>;
       })}
     </>
   );

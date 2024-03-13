@@ -1,6 +1,7 @@
 // imports
 import express from 'express';
 import viteExpress from 'vite-express';
+import { Thing } from './models/model.js';
 
 // Inits
 let app = express();
@@ -9,8 +10,9 @@ let app = express();
 app.use(express.json());
 
 // router
-app.get('/stuff', (req, res) => {
-  res.send([1, 2, 3, 4]);
+app.get('/stuff', async (req, res) => {
+  let things = await Thing.findAll();
+  res.send(things);
 });
 
 // Listen to server
