@@ -2,9 +2,13 @@
 import express from 'express';
 import viteExpress from 'vite-express';
 import { Thing } from './models/model.js';
+import dotenv from 'dotenv';
 
 // Inits
 let app = express();
+dotenv.config();
+
+const PORT = process.env.PORT;
 
 // middleware
 app.use(express.json());
@@ -16,6 +20,6 @@ app.get('/stuff', async (req, res) => {
 });
 
 // Listen to server
-viteExpress.listen(app, 4000, () => {
-  console.log('listening on port 4000');
+viteExpress.listen(app, PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });
